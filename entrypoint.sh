@@ -16,17 +16,16 @@ git config --global user.email "$INPUT_USER_EMAIL"
 npm install hexo-cli -g
 npm install hexo-deployer-git --save
 
-npm audit fix
-
 git clone git@github.com:$GITHUB_ACTOR/$GITHUB_ACTOR.github.io.git .deploy_git
-hexo clean
+
+
 
 # deployment
 if [ "$INPUT_COMMIT_MSG" == "" ]
 then
-    hexo g -d
+    hexo g # -d
 else
-    hexo g -d -m "$INPUT_COMMIT_MSG"
+    hexo g # -d -m "$INPUT_COMMIT_MSG"
 fi
 
 echo ::set-output name=notify::"Deploy complate."
